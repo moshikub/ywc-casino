@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>YWC#12 || บึ้ม-วัด-ใจ!!</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style type="text/css">
+	button{
+		color: #000;
+		height:20px;
+		font-size: 0.6em;
+	}
+	#multiple{
+		font-size: 10em;
+	}
+	#log-mutiple{
+		position: absolute;
+		right:0;
+		top:0;
+		margin-right: 200px;
+		margin-top: 50px;
+		font-size: 1.3em;
+	}
+	#control{
+		position: absolute;
+		left:0;
+		top:0;
+		margin-left: 200px;
+		margin-top: 50px;
+		font-size: 1.5em;
+	}
+	.countdown{
+		font-size: 2.5em;
+	}
+	.bet{
+		font-size: 1.5em;
+	}
+	.name-team{
+		font-size: 2em;
+	}
+	.addvalue{
+		margin-top:20px;
+		font-size: 2em;
+		
+	}
+	.sol-item li{
+		display:inline-block;
+		background:#fff;
+		color:#000;
+		padding:5px 10px;
+		border-radius:10px;
+		margin-left: 5px;
+	}
+	.boom{
+		background: red !important;
+		color: #fff !important;
+	}
+	.yellow{
+		background: yellow !important;
+	}
+	#scoreboard .inputv{
+		color: #000;
+		text-align: center;
+	}
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row" style="text-align:center;">
+			<div class="col-md-12" id="multiple">
+				-----
+			</div>
+		</div>
+		<div id="control">
+			<div id="timer">
+				เหลือเวลาอีก
+				<span class="countdown">7.0</span>
+				วินาที
+			</div>
+			<div>
+				<button id="startbt">START</button>
+				<button id="pausebt">PAUSE</button><br>
+				<button id="stopbt">STOP</button>
+				<button id="solvebt" onclick="return viewsol()">SOLVE</button>
+			</div>
+		</div>
+		<div id="log-mutiple">
+			ทวีคูณที่ผ่านมา
+			<ul>
+				<!--li>x1.45</li>
+				<li>x1.30</li>
+				<li>x1.25</li-->
+			</ul>
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-md-12">
+				<ul class="sol-item" style="display:none">
+					
+				</ul>
+
+			</div>
+		</div>
+		<br><br>
+		<div id="scoreboard">
+		<div class="row" style="text-align:center;">
+			<div class="col-md-1">
+				&nbsp;
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Hermes</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input1" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Aphrodite</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input2" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Gaia</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input3" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Artemis</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input4" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Ares</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input5" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-1">
+				&nbsp;
+			</div>
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-md-1">
+				&nbsp;
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Zeus</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input6" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Cronus</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input7" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Uranus</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input8" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Poseidon</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input9" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-2">
+				<div class="name-team">ทีม Hades</div>
+				<div class="bet">0</div>
+				<input type="text" class="inputv" name="input10" placeholder="0">
+				<div class="addvalue">+0</div>
+			</div>
+			<div class="col-md-1">
+				&nbsp;
+			</div>
+		</div>
+	</div>
+		
+	</div>
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+	var count;
+	var modeplay = 0;
+	var counter; //0 will  run it every 1 second
+	var quiz = -1;
+	var multiple = 
+	[	[1.0, 2.0, 3.0, 4.0, 5.0],
+		[1.20, 1.0, 0.5, 0.25, 1.40],
+		[0.5, 1.4, 0.25, 1.5, 3.0, 1.0],
+		[1.5, 2.5, 0.5, 0.25, 1.0, 1.25, 0.30, 3.0],
+		[1, 2, 3, 5, 1, 0.5],
+		[1.25, 2.0, 0.25, 0.75, 1.25, 1.75, 0.75, 0.50, 0.25, 0.15],
+		[1.45, 1.0, 0.5, 0.25],
+		[1, 2, 1, 0.5, 0.8, 0.5, 2, 1.5],
+		[1.5, 1.75, 0.75, 0.05, 0.10, 0.05],
+		[0.75, 0.50, 0.25, 2.0, 1, 0.5],
+		[1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 3, 2, 5],
+		[0.35, 1.45, 1.75, 0.45, 0.25, 1.0, 0.10, 3],
+		[0.15, 0.25, 0.35, 0.45, 0.55],
+		[1.5, 2.5, 0.10, 0.50],
+		[1.0, 2.0, 1.15, 1.75, 0.25, 2.15, 1.75, 0.65, 0.25, 0.10],
+		[0.95, 0.15, 0.35, 0.85, 0.25, 1.75, 0.10],
+		[0.65, 0.7, 0.45, 0.5, 0.2, 0.15, 0.3, 0.65, 0.95, 1.5, 0.35, 1.75, 5, 0.25, 0.15, 0.45],
+		[0.45, 0.25, 0.35, 0.7, 0.8, 0.55, 0.75, 0.10, 0.30, 0.40, 0.05, 0.35, 0.25, 0.9, 1.0],
+		[0.1, 0.9, 0.2, 0.8, 0.35, 0.75, 0.64],
+		[0.2, 0.65, 0.3, 0.45, 0.62, 1.0, 0.85],
+		[1, 0.3, 0.7, 0.85, 0.25, 0.15],
+		[0.95, 0.85, 0.7, 0.3, 0.2, 0.1, 0.25, 1],
+		[0.45, 0.75, 0.85, 0.15, 0.85, 0.15, 1.50, 1.25, 1.10],
+		[2, 0.10, 1.0, 0.8, 0.50],
+		[0.5, 0.4, 0.20, 0.10, 1.75, 1.95, 1.30, 2.5, 0.10, 0.50, 3, 0.85, 0.10, 1.5],
+		[0.5, 0.1],
+		[0.35, 0.7, 0.8, 0.55, 1.2, 1.3, 1.4, 1],
+
+	];
+	var current;
+	$( "#startbt" ).click(function() {
+		playBGM("play");
+
+		if(modeplay == 2) { //from pause
+			counter=setInterval(timer, 100);
+		} else if(modeplay == 1) {
+		  	//counter=setInterval(timer, 0);
+		} else if(modeplay == 0){ //startgame
+			quiz++;
+			//playBGM("play");
+			loadsol();
+			clearlog();
+			keyinval();
+			$(".sol-item").hide();
+
+			count = 10;
+			modeplay = 1;
+			current = 0;
+			//$("#multiple").html("=x"+multiple[current]);
+			counter=setInterval(timer, 100);
+		}
+	});
+	$( "#pausebt" ).click(function() {
+		playBGM("stop");
+		clearInterval(counter);
+		modeplay = 2;
+	});
+	$( "#stopbt" ).click(function() {
+		playBGM("stop");
+		modeplay = 0;
+		count = 0;
+		clearlog();
+		$("#scoreboard .addvalue").html("+0");
+		$("#scoreboard .addvalue").css('color', 'white');
+	  	$(".countdown").html(count.toFixed(1)); 
+		$("#multiple").html("-----");
+	  	clearInterval(counter);
+	});
+
+	function timer()
+	{
+	  count=count-0.1;
+	  if(count >= 9.9) {
+	  	//alert("blank");
+	  	$("#multiple").html("&nbsp;");
+	  } else
+	  if(count <= 7.0) {
+	  	if(count >= 6.9 && count <= 7.0) { 
+	  		playSnd("tick");
+	  		changebet(multiple[quiz][current]) 
+	  	};
+	  	callcurrent(current);
+	  	if(current<multiple[quiz].length) {
+	  		$("#multiple").html("x"+multiple[quiz][current].toFixed(2));
+	  	} else {
+	  		playBGM("stop");
+	  		$("#multiple").html("BOOM");
+	  		playSnd("boom");
+	  		changebet(0);
+	  		clearInterval(counter);
+	  		count = 0;
+	  		$(".countdown").html(count.toFixed(1)); 
+	  	}
+	  	
+	  }
+	  if (count <= 0.00)
+	  { 
+	  	if(current<multiple[quiz].length) {
+	  		addlog(multiple[quiz][current]);
+	  	}
+	  	
+	  	console.log("current = "+current);
+	    if(current<multiple[quiz].length) {
+	    	//alert("current = "+current);
+	     	count = 10;
+	     	current++;
+	    }
+	     
+	  }
+
+	 if(count <= 7) {
+	 	$(".countdown").html(count.toFixed(1)); 
+	 } else {
+	 	$(".countdown").html(""); 
+	 	//$(".countdown").html(count.toFixed(1)); 
+	 }
+	}
+	function loadsol() {
+		$(".sol-item").html(""); 
+		for(i=0;i<multiple[quiz].length;i++){
+			$(".sol-item").append("<li>x"+multiple[quiz][i].toFixed(2)+"</li>" );
+		}
+		$(".sol-item").append("<li class=\"boom\">BOOM!!</li>" );
+	}
+	function callcurrent(current) {
+		$( ".sol-item li:nth-child("+(current)+")" ).removeClass( "yellow" );
+		$( ".sol-item li:nth-child("+(current+1)+")" ).addClass( "yellow" );
+	}
+	function addlog(mul) {
+		$("#log-mutiple ul").prepend("<li>x"+mul.toFixed(2)+"</li>" );
+	}
+	function clearlog(){
+		$("#log-mutiple ul").html("");
+	}
+	function viewsol(){
+		$(".sol-item").toggle(400);
+	}
+	var input = ["input1", "input2", "input3", "input4", "input5", "input6", "input7", "input8", "input9", "input10"];
+	function keyinval() {
+		var valin = [];
+		for(i=0;i<input.length;i++){
+			valin[i] = $("input[name="+input[i]+"]").val();
+		}
+		i=0;
+		$( "#scoreboard .bet" ).each(function( index ) {
+			if(valin[i] == "") {
+				$( this ).html("0");
+			} else {
+			  	$( this ).html(valin[i]);
+			}
+		  i++;
+		});
+	}
+	var audioElement;
+	function playSnd(wav) {
+	wav = "sound/"+wav+".mp3";
+	 $(document).ready(function() {
+	        audioElement = document.createElement('audio');
+	        audioElement.setAttribute('src', wav);
+	        audioElement.setAttribute('autoplay', 'autoplay');
+	        //audioElement.load()
+	        $.get();
+	        audioElement.addEventListener("load", function() {
+	        audioElement.play();
+	        }, true);
+
+		});
+	 
+
+	}
+	var bgElement;
+	function playBGM(mode) {
+		if(mode == "play") {
+		wav = "sound/bgm.mp3";
+		 $(document).ready(function() {
+		        bgElement = document.createElement('audio');
+		        bgElement.setAttribute('src', wav);
+		        bgElement.setAttribute('autoplay', 'autoplay');
+		        //audioElement.load()
+		        $.get();
+		        bgElement.addEventListener("load", function() {
+		        bgElement.play();
+		        }, true);
+
+			});
+		} else if(mode == "stop"){
+			bgElement.pause();
+		}
+	}
+	
+	function changebet(mul) {
+		if(mul > 1.0) {
+			$(".addvalue").css("color", "rgb(97, 255, 97)");
+		} else if(mul < 1.0){
+			$(".addvalue").css("color", "red");
+		} else {
+			$(".addvalue").css("color", "white");
+		}
+
+		$( "#scoreboard input" ).each(function( index ) {
+			var ori = $(this).parent().find(".bet").html();
+		  temp = ori*mul;
+		  temp = temp.toFixed(0);
+		  $(this).val(temp); //edit input
+		  
+		  var eq = temp-ori;
+
+		  	if(eq >= 0.0) {
+		  		$(this).parent().find(".addvalue").html("+"+eq);
+		  	} else {
+				$(this).parent().find(".addvalue").html(eq);
+			}
+
+		});
+	}
+	</script>
+</body>
+</html>
