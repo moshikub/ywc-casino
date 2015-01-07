@@ -1,0 +1,121 @@
+ @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+body {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+   margin: 0px 0px 0px 0px;
+   background-image: url(../images/bg.png);
+}
+.page{
+  margin: 0px 0px 0px 0px;
+ 
+}
+.wrap {
+  width: 100%;
+  /*max-width: 960px;*/
+  height: auto;
+  /*margin: 0 auto;*/
+  /*margin-top: 80px;*/
+}
+.wrap img {
+  display: block;
+  margin: 0 auto;
+}
+.wrap h3 {
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  font-size: 2em;
+}
+.wrap h4 {
+  color: #FFFFFF;
+  position: relative;
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.wrap .butts {
+  display: block;
+  cursor: pointer;
+  border-radius: 0;
+ 
+}
+.wrap .butts img {
+  width: 50%;
+ 
+}
+.wrap .butts span {
+  position: relative;
+  top: 20px;
+  font-size: 2.5em;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+  margin-left:auto; 
+  margin-right:auto; 
+  }
+
+.butts:hover img {
+  width: 60%;
+
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+}
+.butts:hover span {
+  top: 60px;
+  font-size: 1em;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+}
+.bar-score{
+  position: relative;
+  font-color:#FFFFFF; 
+
+}
+
+.column1{
+  width: 40%;
+  height: 100hv;
+  display: inline-block;
+  float: left;
+}
+
+.column2{
+  width: 60%;
+   height: 100hv;
+  display: inline-block;
+  float: right;
+
+}
+.logo{
+  margin-top:80px;
+  margin-bottom: 50px; 
+}
+.line{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.image{
+ padding-top: 80px;
+
+}
+#counterheads{
+  color: #FFFFFF;
+}
+#countertails{
+  color: #FFFFFF;
+}
+.counter{
+
+}
+#regTitle{
+position: relative;
+margin-top: 150px;
+/*margin-left: 100px;*/
+margin-right: auto;
+
+}
+.text-score{
+  margin-left: 80px;
+}
