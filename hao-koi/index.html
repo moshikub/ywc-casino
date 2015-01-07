@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>เกมส์ โยนเหรียญ (Coin Toss Games)</title>
+  <link rel="stylesheet prefetch" href="css/animate.css">
+  <link rel="stylesheet prefetch" href="css/style.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.number.js"></script>
+  <script src="js/jquery.number.min.js"></script>
+ 
+  <script src="js/stopExecutionOnTimeout.js"></script>
+  <script>
+     $(document).ready(function () {
+          $.preloadImages = function () {
+              for (var i = 0; i < arguments.length; i++) {
+                  if (window.CP.shouldStopExecution(1)) {
+                      break;
+                  }
+                  $('<img />').attr('src', arguments[i]);
+              }
+              window.CP.exitedLoop(1);
+          };
+          $.preloadImages('images/heads.png', 'images/tails.png');
+          $('h3').addClass('animated fadeInDown');
+         
+            var count = 0;
+            var counterheads = 0;
+            var countertails = 0;
+
+          $(document).on('keyup',function(e) {
+              var $keyup = e.keyCode;
+              if($keyup === 67){//heads
+                var side = 'heads';
+              }else if($keyup === 86){//tails
+                var side = 'tails';
+              }else if($keyup === 82){//random
+                var random = 'r';
+              }
+              $(".butts").click(function(event) {
+                 count++;
+                 $("#counter").html(count);  
+              });
+
+           if($(".butts")){
+
+            $(".butts").unbind('click');  
+            $(".butts").click(function() {
+              $('#regTitle').css('margin-top','0px');
+
+                  count++;
+                  $("#counter").html(count);
+
+                  if($keyup === 67 || $keyup === 86){
+                    // var side = 'heads';
+                    console.log(side);
+                      if (side === 'heads') {
+                      counterheads++;
+                     
+                      $('#regTitle').html('<img src="images/text-heads.png" >').addClass('animated pulse');
+                      $('h3').addClass('animated pulse');
+                      $('.image').html('<img class="heads" src="images/heads.png" width="400px"/>');
+                      $('.heads').addClass('animated flip');
+                      } else {
+                          countertails++;
+                         
+                          $('#regTitle').html('<img src="images/text-tails.png" >');
+                          $('h3').addClass('animated pulse');
+                          $('.image').html('<img class="tails" src="images/tails.png" width="400px"/>');
+                          $('.tails').addClass('animated flip');
+                      }
+
+                  } else if(random === 'r'){
+                      console.log('r');
+
+                      var flip = [
+                              'heads',
+                              'tails'
+                          ];
+                      var siderandom = flip[Math.floor(Math.random() * flip.length)];
+                      if (siderandom === 'heads') {
+                      counterheads++;
+                     
+                      $('#regTitle').html('<img src="images/text-heads.png" >').addClass('animated pulse');
+                      $('h3').addClass('animated pulse');
+                      $('.image').html('<img class="heads" src="images/heads.png" width="400px"/>');
+                      $('.heads').addClass('animated flip');
+                      } else {
+                          countertails++;
+                         
+                          $('#regTitle').html('<img src="images/text-tails.png" >');
+                          $('h3').addClass('animated pulse');
+                          $('.image').html('<img class="tails" src="images/tails.png" width="400px"/>');
+                          $('.tails').addClass('animated flip');
+                      }
+                  }
+                  
+                      var averageheads = counterheads *100/count;
+                      $("#counterheads").html($.number( averageheads, 2)+' % | '+counterheads+' Times]');
+
+                      var averagetails = countertails *100/count; 
+                      $("#countertails").html(+$.number( averagetails,2)+' % | '+countertails+' Times]');  
+              })  
+            } 
+
+          });  
+
+    });
+  </script>
+</head>
+<body>
+    <div class="page"> 
+      <div class="wrap">
+         <div class="column1">
+          <div class="logo"> <img src="images/logo.png" ></div>
+           <div class="bar-score">
+           <div class="line">
+              <img src="images/line.png" >
+           </div>
+              <img src="images/score.png" width="130px" >
+              <h3> Toss : <span id="counter">0</span> Times </h3>
+              <div class="text-score">
+                <h4>Heads : <span id="counterheads"> 0 % | 0 Times</span></h4> 
+                <h4>Tails : <span id="countertails"> 0 % | 0 Times</span> </h4> 
+              </div>
+      
+            </div>
+           <div class="line">
+              <img src="images/line.png" >
+           </div> 
+
+            <a href="#" class="butts"><img src="images/play.png" ></a>
+        </div>
+        <div class="column2">
+          <div class="image"></div>
+
+          <div id="regTitle" class="animated fadeInDown"><img src="images/ready.png" ></div>
+        </div>     
+      </div>
+    </div>
+</body>
+</html>
