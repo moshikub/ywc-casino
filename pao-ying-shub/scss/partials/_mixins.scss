@@ -1,0 +1,283 @@
+/*
+* CreativeBox SCSS : Mixin
+* Version : 0.21 (Only Buxaway)
+* Modified : 01/07/2014
+*/
+
+@mixin border-radius($radius, $important:'') {
+    -webkit-border-radius: $radius unquote($important);
+    -moz-border-radius: $radius unquote($important);
+    -ms-border-radius: $radius unquote($important);
+    border-radius: $radius unquote($important);
+}
+
+@mixin transition($transition: 0.15s ease-in-out all) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin font-face($name, $font-files, $ttf: false, $otf: false, $svg: false, $woff: false, $eot: false, $weight: false, $style: false, $stretch: false) {
+    $font-ttf: unquote("");
+    $comma: unquote("");
+    $font-otf: unquote("");
+    $font-svg: unquote("");
+    $font-woff: unquote("");
+    $font-eot: unquote("");
+
+    @if $ttf {
+        $font-ttf: url('#{$font-files}.ttf') unquote("format('truetype')");
+        $comma: unquote(",");
+    }
+    @if $otf {
+        $font-otf: $comma unquote("url('#{$font-files}.otf')") unquote("format('opentype')");
+        $comma: unquote(",");
+    }
+    @if $svg {
+        $font-svg: $comma unquote("url('#{$font-files}.svg#svg')") unquote("format('svg')");
+        $comma: unquote(",");
+    }
+    @if $woff {
+        $font-woff: $comma unquote("url('#{$font-files}.woff')") unquote("format('woff')");
+        $comma: unquote(",");
+    }
+    @if $eot {
+        $font-eot: $comma unquote("url('#{$font-files}.eot?#iefix')") unquote("format('embedded-opentype')");
+    }
+
+    @font-face {
+        font-family: quote($name);
+        src: $font-ttf $font-otf $font-svg $font-woff $font-eot;
+        @if $weight {
+            font-weight: $weight;
+        }
+        @if $style {
+            font-style: $style;
+        }
+        @if $stretch {
+            font-stretch: $stretch;
+        }
+    }
+}
+
+@mixin center-absolute($width, $height) {
+    @if $width {
+        left: 50%;
+        margin-left: -#{$width/2};
+    }
+
+    @if $height {
+        top: 50%;
+        margin-top: -#{$height/2};
+    }
+
+    position: absolute;
+}
+
+@mixin box-shadow($left: 0, $top: 0, $blur: 7px, $spread: 2px, $color: #000000, $inset: false, $important: '') {
+    @if $inset {
+        -webkit-box-shadow: inset $left $top $blur $spread $color unquote($important);
+        -moz-box-shadow: inset $left $top $blur $spread $color unquote($important);
+        box-shadow: inset $left $top $blur $spread $color unquote($important);
+    } @else {
+        -webkit-box-shadow: $left $top $blur $spread $color unquote($important);
+        -moz-box-shadow: $left $top $blur $spread $color unquote($important);
+        box-shadow: $left $top $blur $spread $color unquote($important);
+    }
+}
+
+@mixin arrow($background: #fff, $border-color: #ccc, $size: 10px, $bottom: 5px, $top: auto, $left: 65px, $position: 'top') {
+    position: relative;
+    background: $background;
+
+    &:after, &:before {
+        bottom: $bottom;
+        top: $top;
+        left: $left;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &:after {
+        border-color: rgba(red($background), green($background), blue($background), 0);
+
+        @if ($position == 'top'){
+            border-bottom-color: $background;
+        }
+        @else if ($position == 'bottom'){
+            border-top-color: $background;
+        }
+
+        border-width: $size;
+        margin-left: -$size;
+    }
+    &:before {
+        border-color: rgba(red($border-color), green($border-color), blue($border-color), 0);
+
+        @if ($position == 'top'){
+            border-bottom-color: $border-color;
+        }
+        @else if ($position == 'bottom'){
+            border-top-color: $border-color;
+        }
+
+        border-width: $size+1;
+        margin-left: -($size+1);
+    }
+}
+
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,0.4)) {
+    text-shadow: $x $y $blur $color;
+}
+
+@mixin opacity($trans) {
+    filter: alpha(opactiy=($trans * 100));
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
+    -moz-opacity: $trans;
+    -khtml-opacity: $trans;
+    opacity: $trans;
+}
+
+@mixin linear-gradient($pos, $G1, $G2: null,
+        $G3: null, $G4: null,
+        $G5: null, $G6: null,
+        $G7: null, $G8: null,
+        $G9: null, $G10: null,
+        $fallback: null) {
+
+    // Detect what type of value exists in $pos
+    $pos-type: type-of(nth($pos, 1));
+    $pos-spec: null;
+    $pos-degree: null;
+
+    // If $pos is missing from mixin, reassign vars and add default position
+    @if ($pos-type == color) or (nth($pos, 1) == "transparent")  {
+        $G10: $G9;
+        $G9: $G8;
+        $G8: $G7;
+        $G7: $G6;
+        $G6: $G5;
+        $G5: $G4;
+        $G4: $G3;
+        $G3: $G2;
+        $G2: $G1;
+        $G1: $pos;
+        $pos: null;
+    }
+
+    @if $pos {
+        $positions: _linear-positions-parser($pos);
+        $pos-degree: nth($positions, 1);
+        $pos-spec: nth($positions, 2);
+    }
+
+    $full: $G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10;
+
+    // Set $G1 as the default fallback color
+    $fallback-color: nth($G1, 1);
+
+    // If $fallback is a color use that color as the fallback color
+    @if (type-of($fallback) == color) or ($fallback == "transparent") {
+        $fallback-color: $fallback;
+    }
+
+    background: $fallback-color;
+    background: -webkit-linear-gradient($pos-degree $full);
+    background: -o-linear-gradient($pos-degree $full);
+    background: -ms-linear-gradient($pos-degree $full);
+    background: -moz-linear-gradient($pos-degree $full);
+    background: unquote("linear-gradient(#{$pos-spec}#{$full})");
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#919191', GradientType=0); /* IE6-9 */
+}
+
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+@mixin animation ($delay, $duration, $animation, $fill_mode: both, $iteration_count: 1) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: $fill_mode;
+    -webkit-animation-iteration-count: $iteration_count;
+
+
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: $fill_mode;
+    -moz-animation-iteration-count: $iteration_count;
+
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: $fill_mode;
+    -o-animation-iteration-count: $iteration_count;
+
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: $fill_mode;
+    animation-iteration-count: $iteration_count;
+}
+
+@mixin position($top: null, $right: null, $bottom: null, $left: null, $position: null, $float: null) {
+    @if $top != null {
+        top: $top;
+    }
+
+    @if $right != null {
+        right: $right;
+    }
+
+    @if $bottom != null {
+        bottom: $bottom;
+    }
+
+    @if $left != null {
+        left: $left;
+    }
+
+    @if $position != null {
+        position: $position;
+    }
+
+    @if $float != null {
+        float: $float;
+    }
+}
+
+
+@mixin position_fit($top: 0, $right: 0, $bottom: 0, $left: 0){
+    @include position($top !important, $right !important, $bottom !important, $left !important, $position: absolute !important);
+}
+
+@mixin user-select-none() {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+
+    /* No support for these yet, use at own risk */
+    -o-user-select: none;
+    user-select: none;
+}

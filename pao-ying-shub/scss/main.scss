@@ -1,0 +1,357 @@
+@import "partials/functions";
+@import "partials/mixins";
+@import "fonts";
+
+body {
+
+
+    margin: 0;
+    padding: 0;
+
+    font-family: "Boon-0.6", sans-serif;
+
+    @include user-select-none();
+}
+
+.background {
+    position: absolute;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+
+    @include position_fit();
+
+    min-height: 830px;
+    min-width: 1300px;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    @include border-radius(10px);
+
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    right: 100px;
+    bottom: 100px;
+
+    min-height: 630px;
+    min-width: 1100px;
+
+
+    .logo {
+        width: 500px;
+
+        img {
+            width: 100%;
+        }
+
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        margin-left: -250px;
+    }
+
+    .wrapper {
+        position: absolute;
+
+        @include position_fit();
+
+        // =============================================================================
+        // Main Wrapper
+        &.main-wrapper {
+
+            .player-wrapper {
+
+                // Result
+                .result {
+                    color: #ffffff;
+                    position: absolute;
+                    bottom: 20px;
+                    text-align: center;
+
+                    left: 0;
+                    right: 0;
+
+                    font-size: 56px;
+
+                    @include text-shadow(0, 0, 8px, rgba(0, 0, 0, 0.8));
+                }
+
+                // Player
+                .player {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+
+                    .name {
+                        color: #ffffff;
+                        position: absolute;
+                        top: 80px;
+                        text-align: center;
+
+                        left: 0;
+                        right: 0;
+
+                        font-size: 48px;
+
+                        @include text-shadow(0, 0, 8px, rgba(0, 0, 0, 0.8));
+                    }
+
+                    // Image View
+                    .image-view {
+                        width: 350px;
+                        height: 350px;
+
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+
+                        margin-left: -175px;
+                        margin-top: -175px;
+
+                        img {
+                            width: 100%;
+                        }
+
+                        &.image-view-grey {
+                            img {
+                                -webkit-filter: grayscale(1);
+                                filter: grayscale(1);
+                            }
+                        }
+                    }
+
+                    // Select Button
+                    .select-btn {
+                        background-color: rgba(250, 235, 215, 0.81);
+                        width: 256px;
+                        height: 256px;
+
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+
+                        margin-left: -128px;
+                        margin-top: -128px;
+
+                        font-size: 48px;
+                        text-align: center;
+
+                        line-height: 280px;
+
+                        @include border-radius(256px);
+                        @include transition(.2s all ease-in-out);
+                        cursor: pointer;
+
+                        &:hover {
+                            width: 290px;
+                            height: 290px;
+
+                            margin-left: -145px;
+                            margin-top: -145px;
+
+                            line-height: 315px;
+                        }
+
+                        &:active {
+                            top: 49%;
+                        }
+
+                        &.selected {
+                            top: auto;
+                            bottom: 100px;
+                            height: 40px;
+
+                            padding-top: 20px;
+                            line-height: 36px;
+                            font-size: 36px;
+                        }
+                    }
+                }
+
+                .player-1 {
+                    left: 0;
+                    right: 50%;
+                }
+
+                .player-2 {
+                    right: 0;
+                    left: 50%;
+                }
+
+                // Bar
+                .separate-bar {
+                    width: 2px;
+
+                    position: absolute;
+                    left: 50%;
+                    top: 30%;
+                    bottom: 30%;
+                    margin-left: -1px;
+                    background-color: rgb(180, 180, 180);
+
+                }
+
+                // Fight Button
+                .fight-button {
+                    width: 128px;
+                    height: 128px;
+
+                    background-color: rgb(180, 180, 180);
+
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -64px;
+                    margin-top: -64px;
+
+                    text-align: center;
+                    line-height: 142px;
+
+                    font-size: 36px;
+
+                    @include border-radius(128px);
+                    @include transition(.2s all ease-in-out);
+                    @include box-shadow(0, 2px, 2px, 0px, rgba(0, 0, 0, 0.4));
+
+                    &.disable {
+                        @include opacity(0.2);
+                        cursor: not-allowed;
+                    }
+
+                    &.enable {
+                        cursor: crosshair;
+
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 1);
+                            top: 49%;
+                        }
+
+                        &:active {
+                            top: 51%;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // =============================================================================
+        // Select Wrapper
+        &.select-wrapper {
+            @include position_fit();
+
+            .title {
+                color: #ffffff;
+                position: absolute;
+                top: 100px;
+                text-align: center;
+
+                left: 0;
+                right: 0;
+
+                font-size: 48px;
+
+                @include text-shadow(0, 0, 8px, rgba(0, 0, 0, 0.8));
+            }
+
+            .option-wrapper {
+                width: 1008px;
+                height: 256px;
+
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                margin-left: -504px;
+                margin-top: -128px;
+
+                .option {
+                    width: 256px;
+                    height: 256px;
+
+                    position: absolute;
+                    text-align: center;
+
+                    @include transition(.2s all ease-in-out);
+                    cursor: pointer;
+
+                    &:hover {
+                        margin-top: -20px;
+                    }
+
+                    &:active {
+                        margin-top: 20px;
+                    }
+
+                    // Caption
+                    .caption {
+                        color: #ffffff;
+                        font-size: 36px;
+                        margin-top: 10px;
+                        padding: 13px 3px 3px 3px;
+                        line-height: 42px;
+                        @include border-radius(5px);
+                    }
+
+                    // Img
+                    img {
+                        width: 100%;
+                    }
+
+                    // Option Stype
+                    &.option-1 {
+                        left: 0;
+
+                        .caption {
+                            background-color: #55c0e0;
+                        }
+                    }
+
+                    &.option-2 {
+                        left: 50%;
+                        margin-left: -128px;
+
+                        .caption {
+                            background-color: #f2ae43;
+                        }
+                    }
+
+                    &.option-3 {
+                        right: 0;
+
+                        .caption {
+                            background-color: #db524a;
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
+}
+
+.wrapper {
+    width: 100%;
+    position: relative;
+    @include transition(.1s all ease-in-out);
+
+    &.blur {
+        -webkit-filter: blur(4px);
+        -moz-filter: blur(4px);
+        -o-filter: blur(4px);
+        -ms-filter: blur(4px);
+        filter: blur(4px);
+    }
+
+
+
+
+
+}
+
+.hidden {
+    display: none;
+}
