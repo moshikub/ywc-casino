@@ -1,7 +1,7 @@
 window.i=0;
 window.n=1;
 window.random;
-window.setValue;
+
 
 $(document).ready(function(){
   $(".youwin").hide()
@@ -37,17 +37,20 @@ $(document).on("keydown" ,function(event){
     var active=$(".select img").eq(i-1).hasClass("active")
     if (active == true){
       if(event.keyCode == 67 || event.keyCode == 99) {
-        window.random = i;
+        random = i;
+      }
+      else if(event.keyCode == 32) {
+        $(".play").click()
       }
       else if(event.keyCode == 86 || event.keyCode == 118) {
         if (i == 6) {
-          window.random = i-1
+          random = i-1
         }
         else if (i == 1) {
-          window.random = i+1
+          random = i+1
         }
         else {
-          window.random = window.random + 1;
+          random = random + 1;
         }
       }
     }
@@ -87,12 +90,13 @@ function checkCorrect(random){
   $(".play").removeClass("disable")
   $(".play").removeAttr("disabled","disabled");
   $(".play").attr("src","image/play2.png")
+  
   var i=1;
   while (i<=6){
     var active=$(".select img").eq(i-1).hasClass("active")
     if (active == true){
       if (i==random){       
-        $(".youwin").fadeIn(2000);
+        $(".youwin").fadeIn(1800);
         return
       }
     }
