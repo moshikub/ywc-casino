@@ -52,7 +52,7 @@ $(document).on("keydown" ,function(event){
       }
     }
     i++;
-    console.log(window.random + "window")
+    // console.log(window.random + "window")
   }  
 });
 
@@ -60,17 +60,17 @@ function focusFast(i,n,time){
   setTimeout(function(){ 
     $(".correct").attr("src","image/pic" + n + ".png")
     if (n<7) {   
-      if (i==5 & n==random){
+      if (i==4 & n==random){
         $(".border").addClass("picture");
         checkCorrect(random)
       }
       else {
         if (n==6){
           if (i<3) {time = i*100;}
-          else if (i==3) {time = 500}
-          else {
-            time = 1200;
-          }
+          else if (i==3) {time = 800}
+          // else {
+          //   time = 1000;
+          // }
           i++;
           focusFast(i,1,time);
         }
@@ -104,7 +104,7 @@ function checkCorrect(random){
 function makeid() {
   var possible = "123456";
   var text = Math.floor(Math.random() * possible.length)+1;
-  console.log("random" + text)
+  // console.log("random" + text)
   return text;
 }
 
